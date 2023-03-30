@@ -5,6 +5,7 @@ import com.acme.apidomains.process_design.mappers.SkillMapper;
 import com.acme.apidomains.process_design.services.SkillService;
 import com.acme.domains.process_design.QueryServiceGrpc;
 import com.acme.domains.process_design.transport.ListSkills;
+import io.grpc.Status;
 import io.grpc.stub.StreamObserver;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,10 @@ public class ProcessDesignGrpcService extends QueryServiceGrpc.QueryServiceImplB
 
     public void listSkills(ListSkills.ListSkillsRequest request, StreamObserver<ListSkills.ListSkillsResponse> responseObserver) {
          skillService.findAllSkills().map(SkillMapper::toGrpc).collectList().map(SkillMapper::toGrpcResponse)
-                     .subscribe(responseObserver::onNext, responseObserver::onError, responseObserver::onCompleted);
+                 // These log shows the next step
+                 .log()
+                 // GRpcExceptionHandlerInterceptor do not intercept exceptions correctly, I have to do this to obtain the correct behavior which is not handy.
+                 //.onErrorMap(ex -> Status.INTERNAL.withDescription(ex.getLocalizedMessage()).withCause(ex).asRuntimeException())
+                 .subscribe(responseObserver::onNext, responseObserver::onError, responseObserver::onCompleted);
     }
 }
