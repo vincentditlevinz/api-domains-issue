@@ -40,11 +40,13 @@ Message:
 Instead of 
 ```
 ERROR:
-Code: Unknown
-Message:
+  Code: Internal
+  Message: test
 ```
 
-## Steps to reproduce Happy path
+And a bunch of logs showing that the `com.acme.apidomains.interceptors.GrpcExceptionAdvice` has been used.
+
+## Steps to reproduce the Happy path (to prove that it works when no exception is thrown)
 
 - Modify com.acme.apidomains.process_design.services.SkillServiceImpl in order to not throw any exception
 - mvn compile
