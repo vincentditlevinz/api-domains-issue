@@ -1,3 +1,7 @@
+## Issue
+
+https://github.com/LogNet/grpc-spring-boot-starter/issues/342
+
 ## Getting started
 
 Before running the service locally, you will need the following:
