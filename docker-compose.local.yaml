@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  api_domains_postgresql:
+    image: postgres:latest
+    container_name: api_domains_postgresql
+    expose:
+      - "5432"
+    ports:
+      - "5432:5432"
+    restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=api_domains
+      - POSTGRES_HOST=5432
+    command: -p 5432
+    volumes:
+      - postgres-api-domains:/var/lib/postgresql/data
+    networks: [ "api_domains" ]
+
+volumes:
+  postgres-api-domains:
+
+networks:
+  api_domains:
+    name: api_domains
