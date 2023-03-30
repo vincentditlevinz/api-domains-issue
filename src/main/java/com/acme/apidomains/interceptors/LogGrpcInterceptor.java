@@ -6,10 +6,13 @@ import io.grpc.ServerCallHandler;
 import io.grpc.ServerInterceptor;
 import lombok.extern.slf4j.Slf4j;
 import org.lognet.springboot.grpc.GRpcGlobalInterceptor;
+import org.springframework.core.Ordered;
+import org.springframework.core.annotation.Order;
 
 
 @Slf4j
 @GRpcGlobalInterceptor
+@Order(Ordered.HIGHEST_PRECEDENCE)
 public class LogGrpcInterceptor implements ServerInterceptor {
 
     @Override
