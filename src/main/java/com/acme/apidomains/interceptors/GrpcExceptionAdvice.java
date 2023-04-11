@@ -14,9 +14,9 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 public class GrpcExceptionAdvice {
 
     @GRpcExceptionHandler
-    public Status handle(RuntimeException ex, GRpcExceptionScope scope) {
+    public Status handle(Throwable ex, GRpcExceptionScope scope) {
         var status = Status.INTERNAL.withDescription(ex.getLocalizedMessage()).withCause(ex);
-        log.error("(GrpcExceptionAdvice) RuntimeException: ", ex);
+        log.error("(GrpcExceptionAdvice) Throwable: ", ex);
         return status;
     }
 

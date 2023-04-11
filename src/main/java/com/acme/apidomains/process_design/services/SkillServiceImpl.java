@@ -18,7 +18,8 @@ public class SkillServiceImpl implements SkillService {
     @Override
     @Transactional(readOnly = true)// removing this annotation and then transaction handling is a workaround, but we cannot live with such a limitation
     public Flux<Skill> findAllSkills() {
-        if(true) throw new IllegalStateException("test");// if(true) return Flux.error(new IllegalStateException("test")) gives the exact same outcome
+        if(true) throw new RuntimeException("test");//
+        //if(true) return Flux.error(new RuntimeException("test")); // gives the exact same outcome
         return skillRepository.findAll(Sort.by("name"));
     }
 }
