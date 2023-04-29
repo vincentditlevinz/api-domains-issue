@@ -1,0 +1,16 @@
+= API Domains Documentation
+:modulith-docs: ../../../build/spring-modulith-docs
+
+== Overview
+
+plantuml::{modulith-docs}/components.puml[format="svg"]
+
+== Interceptors
+
+plantuml::{modulith-docs}/module-interceptors.puml[format="svg"]
+include::{modulith-docs}/module-interceptors.adoc[]
+
+== Process design
+
+plantuml::{modulith-docs}/module-process_design.puml[format="svg"]
+include::{modulith-docs}/module-process_design.adoc[]
