@@ -8,7 +8,6 @@ import org.lognet.springboot.grpc.recovery.GRpcExceptionHandler;
 import org.lognet.springboot.grpc.recovery.GRpcExceptionScope;
 import org.lognet.springboot.grpc.recovery.GRpcServiceAdvice;
 import org.springframework.dao.DataAccessException;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 
 @GRpcServiceAdvice
 @Slf4j
@@ -26,14 +25,6 @@ public class GrpcExceptionAdvice {
         var status =
                 Status.INVALID_ARGUMENT.withDescription(ex.getLocalizedMessage()).withCause(ex);
         log.error("(GrpcExceptionAdvice) DataAccessException: ", ex);
-        return status;
-    }
-
-    @GRpcExceptionHandler
-    public Status handle(MethodArgumentNotValidException ex, GRpcExceptionScope scope) {
-        var status =
-                Status.INVALID_ARGUMENT.withDescription(ex.getLocalizedMessage()).withCause(ex);
-        log.error("(GrpcExceptionAdvice) MethodArgumentNotValidException: ", ex);
         return status;
     }
 

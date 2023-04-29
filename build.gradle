@@ -11,11 +11,11 @@ plugins {
 import org.silbertb.gradle.protopublish.ProtoDocumentationTask
 
 
-group = 'com.tessi.tardigrade'
+group = 'com.acme'
 version = '0.0.1'
 sourceCompatibility = '17'
 
-description = 'Modular domain driven business api for Tardigrade platform'
+description = 'Modular domain driven business api'
 
 configurations {
 	compileOnly {
@@ -34,9 +34,6 @@ bootRun {
 ext {
 	set('modulithVersion', "0.5.1")
 	set('testcontainersVersion', "1.17.6")
-	set('zeebeVersion', "8.2.0")
-	set('zeebeBpmnModelVersion', "8.2.3")
-	set('camelVersion', "4.0.0-M2")
 	set('grpcSpringbootStarterVersion', "5.1.1")
 	set('reactiveGrpcVersion', "1.2.4")
 	set('javaGrpcVersion', "1.54.0")
@@ -47,15 +44,10 @@ ext {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
-	implementation "org.apache.camel.springboot:camel-spring-boot-starter:${camelVersion}"
-	implementation "org.apache.camel.springboot:camel-minio-starter:${camelVersion}"
-	implementation 'org.springframework.boot:spring-boot-starter-validation'
-	implementation "io.camunda:spring-zeebe-starter:${zeebeVersion}"
 	implementation "io.github.lognet:grpc-spring-boot-starter:${grpcSpringbootStarterVersion}"
 	implementation 'io.grpc:grpc-netty-shaded'
 	implementation 'io.grpc:grpc-protobuf'
 	implementation 'io.grpc:grpc-stub'
-	implementation "io.camunda:zeebe-bpmn-model:${zeebeBpmnModelVersion}"
 	implementation("build.buf.protoc-gen-validate:pgv-java-stub:${pgvVersion}")
 	implementation('io.envoyproxy.protoc-gen-validate:pgv-java-grpc:0.6.13')
 	implementation "com.salesforce.servicelibs:reactor-grpc-stub:${reactiveGrpcVersion}"
@@ -78,9 +70,6 @@ dependencies {
 	testImplementation 'org.testcontainers:r2dbc'
 	testImplementation 'org.projectlombok:lombok'
 	testAnnotationProcessor 'org.projectlombok:lombok'
-	testImplementation "io.camunda:spring-zeebe-test:${zeebeVersion}"
-	testImplementation 'org.awaitility:awaitility'
-
 }
 
 dependencyManagement {
