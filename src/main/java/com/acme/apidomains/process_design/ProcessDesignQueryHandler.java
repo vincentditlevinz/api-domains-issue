@@ -1,8 +1,9 @@
-package com.acme.apidomains.process_design.handlers;
+package com.acme.apidomains.process_design;
 
 import static com.acme.domains.process_design.QueryServiceProto.ListSkillsRequest;
 import static com.acme.domains.process_design.QueryServiceProto.ListSkillsResponse;
 
+import com.acme.apidomains.framework.LogGrpcInterceptor;
 import com.acme.apidomains.process_design.mappers.SkillMapper;
 import com.acme.apidomains.process_design.services.SkillService;
 import com.acme.domains.process_design.ReactorQueryServiceGrpc;
@@ -14,10 +15,10 @@ import org.lognet.springboot.grpc.GRpcService;
 
 import reactor.core.publisher.Mono;
 
-@GRpcService
+@GRpcService(interceptors = LogGrpcInterceptor.class)
 @Slf4j
 @RequiredArgsConstructor
-public class ProcessDesignGrpcService extends ReactorQueryServiceGrpc.QueryServiceImplBase {
+public class ProcessDesignQueryHandler extends ReactorQueryServiceGrpc.QueryServiceImplBase {
 
     private final SkillService skillService;
 

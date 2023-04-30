@@ -5,10 +5,10 @@
 
 plantuml::{modulith-docs}/components.puml[format="svg"]
 
-== Interceptors
+== Framework
 
-plantuml::{modulith-docs}/module-interceptors.puml[format="svg"]
-include::{modulith-docs}/module-interceptors.adoc[]
+plantuml::{modulith-docs}/module-framework.puml[format="svg"]
+include::{modulith-docs}/module-framework.adoc[]
 
 == Process design
 

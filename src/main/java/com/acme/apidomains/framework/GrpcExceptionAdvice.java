@@ -1,4 +1,4 @@
-package com.acme.apidomains.interceptors;
+package com.acme.apidomains.framework;
 
 import io.grpc.Status;
 
