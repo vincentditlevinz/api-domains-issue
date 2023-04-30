@@ -3,6 +3,8 @@ version: "3.9"
 services:
   api-domains-postgresql:
     image: postgres:15.2-alpine
+    ports:
+      - "5432:5432"
     environment:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
