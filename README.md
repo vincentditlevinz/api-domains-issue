@@ -2,8 +2,8 @@
 
 Did not find how to make Modulith transactional events work in a R2DBC context. We tested:
 - `org.springframework.experimental:spring-modulith-jdbc` required a jdbcTemplate to work properly
-- Adding `org.springframework.boot:spring-boot-starter-data-jdbc` or simply `org.springframework.boot:spring-boot-starter-jdbc` with `spring.datasource.xxx` configurations in `application.properties` failed. Probably because of `org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration` works only when `@ConditionalOnMissingBean(type = "io.r2dbc.spi.ConnectionFactory")` is satisfied...
-- So I provided a Datasource and a jdbcTemplate manually. But the reactive transaction manager throw an exception because of `org.springframework.experimental:spring-modulith-jdbc` : `java.lang.IllegalStateException: Cannot apply reactive transaction to non-reactive return type: interface java.util.List`
+- Adding `org.springframework.boot:spring-boot-starter-data-jdbc` or simply `org.springframework.boot:spring-boot-starter-jdbc` with `spring.datasource.xxx` configurations in `application.properties` failed. Probably because of `org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration` which works only when `@ConditionalOnMissingBean(type = "io.r2dbc.spi.ConnectionFactory")` is satisfied...
+- So we provided a Datasource and a jdbcTemplate manually. But the reactive transaction manager throw an exception because of `org.springframework.experimental:spring-modulith-jdbc` : `java.lang.IllegalStateException: Cannot apply reactive transaction to non-reactive return type: interface java.util.List`
 
 We are waiting for:
 - https://github.com/spring-projects-experimental/spring-modulith/issues/174
