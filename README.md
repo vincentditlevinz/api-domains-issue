@@ -8,6 +8,8 @@ Did not find how to make Modulith transactional events work in a R2DBC context. 
 We are waiting for:
 - https://github.com/spring-projects-experimental/spring-modulith/issues/174
 
+In the meantime we only use [non-transactional events](https://github.com/vincentditlevinz/api-domains-issue/blob/8d8a22233ad941783a64fa83c36589bd4d434178/src/main/java/com/acme/apidomains/process_runtime/ProcessRuntimeQueryHandler.java#L21)
+
 ## Getting started
 
 Before running the service locally, you will need the following:
