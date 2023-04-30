@@ -25,6 +25,9 @@ configurations {
 
 repositories {
 	mavenCentral()
+	maven {
+		url "https://repo.spring.io/snapshot"
+	}
 }
 
 bootRun {
@@ -32,7 +35,7 @@ bootRun {
 }
 
 ext {
-	set('modulithVersion', "0.5.1")
+	set('modulithVersion', "0.6.0-SNAPSHOT")
 	set('jmoleculesVersion', "2022.2.2")
 	set('testcontainersVersion', "1.17.6")
 	set('grpcSpringbootStarterVersion', "5.1.1")
