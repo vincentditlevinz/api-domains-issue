@@ -49,11 +49,11 @@ dependencies {
 	implementation 'io.grpc:grpc-netty-shaded'
 	implementation 'io.grpc:grpc-protobuf'
 	implementation 'io.grpc:grpc-stub'
-	implementation("build.buf.protoc-gen-validate:pgv-java-stub:${pgvVersion}")
-	implementation('io.envoyproxy.protoc-gen-validate:pgv-java-grpc:0.6.13')
+	implementation "build.buf.protoc-gen-validate:pgv-java-stub:${pgvVersion}"
+	implementation 'io.envoyproxy.protoc-gen-validate:pgv-java-grpc:0.6.13'
 	implementation "com.salesforce.servicelibs:reactor-grpc-stub:${reactiveGrpcVersion}"
 
-	developmentOnly("org.springframework.boot:spring-boot-devtools")
+	developmentOnly "org.springframework.boot:spring-boot-devtools"
 
 	runtimeOnly 'org.flywaydb:flyway-core'
 	runtimeOnly 'org.postgresql:postgresql'
@@ -126,7 +126,7 @@ protoPublish {
 	// previousVersion = "0.0.1" // to activate when we will have a previous version
 }
 
-task protoDoc(type: ProtoDocumentationTask) {
+tasks.register('protoDoc', ProtoDocumentationTask) {
 	addGenerateDeps(["google", "validate"])
 }
 
