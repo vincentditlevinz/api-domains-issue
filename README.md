@@ -1,14 +1,12 @@
 ## Issue
 
-https://github.com/spring-projects-experimental/spring-modulith/issues/187
+Did not find how to make Modulith transactional events work in a R2DBC context. We tested:
+- `org.springframework.experimental:spring-modulith-jdbc` required a jdbcTemplate to work properly
+- Adding `org.springframework.boot:spring-boot-starter-data-jdbc` or simply `org.springframework.boot:spring-boot-starter-jdbc` with `spring.datasource.xxx` configurations in `application.properties` failed. Probably because of `org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration` works only when `@ConditionalOnMissingBean(type = "io.r2dbc.spi.ConnectionFactory")` is satisfied...
+- So I provided a Datasource and a jdbcTemplate manually. But the reactive transaction manager throw an exception because of `org.springframework.experimental:spring-modulith-jdbc` : `java.lang.IllegalStateException: Cannot apply reactive transaction to non-reactive return type: interface java.util.List`
 
-Looking at generated docs in `build/spring-modulith-docs` (or `src/main/asciidoc/index.adoc`), `SkillService` is depicted as a public service instead of an internal service of the module. It should not appear in the generated documentation unless we use the `CanvasOptions.revealInternals()` option:
-
-```
-new Documenter(modules).writeDocumentation(Documenter.DiagramOptions.defaults(), Documenter.CanvasOptions.defaults().revealInternals());
-```
-
-but it does.
+We are waiting for:
+- https://github.com/spring-projects-experimental/spring-modulith/issues/174
 
 ## Getting started
 
@@ -30,4 +28,13 @@ Before running the service locally, you will need the following:
 ```
 make up-local && ./gradlew clean bootRun --info
 grpcurl --plaintext -d '{}' localhost:8000 acme.process_design.v1.QueryService/ListSkills
+```
+
+
+### Tips
+
+You can show internals components with the following configuration:
+
+```
+new Documenter(modules).writeDocumentation(Documenter.DiagramOptions.defaults(), Documenter.CanvasOptions.defaults().revealInternals());
 ```
