@@ -1,6 +1,7 @@
 package com.acme.apidomains;
 
 import io.grpc.*;
+
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.DynamicPropertyRegistry;
@@ -32,13 +33,15 @@ public abstract class AbstractIntegrationContainerBaseTest {
                 () ->
                         String.format(
                                 "jdbc:postgresql://%s:%d/api_domains",
-                                env.getServiceHost(ServiceNames.API_DOMAINS_POSTGRESQL, 5432), 5432));
+                                env.getServiceHost(ServiceNames.API_DOMAINS_POSTGRESQL, 5432),
+                                5432));
         registry.add(
                 "spring.r2dbc.url",
                 () ->
                         String.format(
                                 "r2dbc:postgresql://%s:%d/api_domains",
-                                env.getServiceHost(ServiceNames.API_DOMAINS_POSTGRESQL, 5432), 5432));
+                                env.getServiceHost(ServiceNames.API_DOMAINS_POSTGRESQL, 5432),
+                                5432));
     }
 
     protected void startGrpcServer(BindableService service) throws IOException {

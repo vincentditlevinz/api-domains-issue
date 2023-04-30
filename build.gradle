@@ -33,6 +33,7 @@ bootRun {
 
 ext {
 	set('modulithVersion', "0.5.1")
+	set('jmoleculesVersion', "2022.2.2")
 	set('testcontainersVersion', "1.17.6")
 	set('grpcSpringbootStarterVersion', "5.1.1")
 	set('reactiveGrpcVersion', "1.2.4")
@@ -43,6 +44,7 @@ ext {
 
 dependencies {
 	implementation 'org.springframework.experimental:spring-modulith-core'
+	implementation 'org.jmolecules:jmolecules-events'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-r2dbc'
 	implementation "io.github.lognet:grpc-spring-boot-starter:${grpcSpringbootStarterVersion}"
@@ -77,6 +79,7 @@ dependencyManagement {
 	imports {
 		mavenBom "org.testcontainers:testcontainers-bom:${testcontainersVersion}"
 		mavenBom "org.springframework.experimental:spring-modulith-bom:${modulithVersion}"
+		mavenBom "org.jmolecules:jmolecules-bom:${jmoleculesVersion}"
 		mavenBom "io.grpc:grpc-bom:${javaGrpcVersion}"
 	}
 }

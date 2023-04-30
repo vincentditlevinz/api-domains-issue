@@ -1,10 +1,10 @@
 package com.acme.apidomains.process_design;
 
-import static org.junit.jupiter.api.Assertions.assertIterableEquals;
 import static com.acme.domains.process_design.QueryServiceProto.ListSkillsResponse.Skill.*;
 
+import static org.junit.jupiter.api.Assertions.assertIterableEquals;
+
 import com.acme.apidomains.AbstractIntegrationContainerBaseTest;
-import com.acme.apidomains.process_design.model.Skill;
 import com.acme.domains.process_design.QueryServiceProto;
 import com.acme.domains.process_design.ReactorQueryServiceGrpc;
 
@@ -38,13 +38,29 @@ class ProcessDesignQueryHandlerIntegrationTest extends AbstractIntegrationContai
         var request = Mono.just(QueryServiceProto.ListSkillsRequest.newBuilder().build());
         var response = request.transform(stub::listSkills);
 
-        var skill1 = newBuilder().setId(2).setName("api-rest").setDescription("A skill to handle rest api call service tasks defined in business processes").build();
-        var skill2 = newBuilder().setId(1).setName("email").setDescription("A skill to handle email service tasks defined in business processes").build();
+        var skill1 =
+                newBuilder()
+                        .setId(2)
+                        .setName("api-rest")
+                        .setDescription(
+                                "A skill to handle rest api call service tasks defined in business"
+                                        + " processes")
+                        .build();
+        var skill2 =
+                newBuilder()
+                        .setId(1)
+                        .setName("email")
+                        .setDescription(
+                                "A skill to handle email service tasks defined in business"
+                                        + " processes")
+                        .build();
 
         response.as(StepVerifier::create)
                 .assertNext(
                         listSkillsResponse ->
-                                assertIterableEquals(List.of(skill1, skill2), listSkillsResponse.getSkillsList()))
+                                assertIterableEquals(
+                                        List.of(skill1, skill2),
+                                        listSkillsResponse.getSkillsList()))
                 .verifyComplete();
     }
 }

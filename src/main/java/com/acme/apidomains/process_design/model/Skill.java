@@ -8,13 +8,14 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @AllArgsConstructor
 @Builder
 @Data
 @Table(schema = "api_domains", name = "skill")
-public class Skill {
+public class Skill implements Serializable {
 
     @Id
     @Column(ID)
