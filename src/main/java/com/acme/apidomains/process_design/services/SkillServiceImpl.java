@@ -18,10 +18,7 @@ public class SkillServiceImpl implements SkillService {
     private final SkillRepository skillRepository;
 
     @Override
-    @Transactional(
-            readOnly =
-                    true) // removing this annotation and then transaction handling is a workaround,
-    // but we cannot live with such a limitation
+    @Transactional(readOnly = true)
     public Flux<Skill> findAllSkills() {
         return skillRepository.findAll(Sort.by("name"));
     }
