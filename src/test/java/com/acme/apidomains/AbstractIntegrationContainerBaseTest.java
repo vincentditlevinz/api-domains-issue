@@ -22,7 +22,8 @@ public abstract class AbstractIntegrationContainerBaseTest {
     static {
         env =
                 new DockerComposeContainer<>(
-                        new File("src/test/resources/docker-compose-pg-test.yaml"));
+                                new File("src/test/resources/docker-compose-pg-test.yaml"))
+                        .withExposedService(ServiceNames.API_DOMAINS_POSTGRESQL, 5432);
         env.start();
     }
 
